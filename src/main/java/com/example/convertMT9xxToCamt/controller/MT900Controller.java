@@ -57,13 +57,45 @@ public class MT900Controller {
     private void saveBlocksToFile(List<String> blocks) {
         try {
             FileWriter writer = new FileWriter("D:/file/input/input.txt");
+            FileWriter block1Writer = new FileWriter("D:/file/input/block1.txt");
+
             for (String block : blocks) {
                 writer.write(block + "\n");
+
+                // Kiểm tra nếu block bắt đầu bằng {1:
+                if (block.startsWith("{1:")) {
+                    // Cắt block 1 thành các phần và lưu vào block1.txt
+                    String part1 = block.substring(0, 3);
+                    String part2 = block.substring(3, 4);
+                    String part3 = block.substring(4, 6);
+                    String part4 = block.substring(6, 14);
+                    String part5 = block.substring(14, 15);
+                    String part6 = block.substring(15, 18);
+                    String part7 = block.substring(18, 22);
+                    String part8 = block.substring(22, 28);
+                    String part9 = block.substring(28);
+
+                    // Ghi các phần vào tệp block1.txt
+                    block1Writer.write(part1 + "\n");
+                    block1Writer.write(part2 + "\n");
+                    block1Writer.write(part3 + "\n");
+                    block1Writer.write(part4 + "\n");
+                    block1Writer.write(part5 + "\n");
+                    block1Writer.write(part6 + "\n");
+                    block1Writer.write(part7 + "\n");
+                    block1Writer.write(part8 + "\n");
+                    block1Writer.write(part9 + "\n");
+                }
             }
+
+            // Đóng writer của cả hai tệp sau khi đã ghi xong
             writer.close();
+            block1Writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 }
 
